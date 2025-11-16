@@ -6,19 +6,48 @@ st.markdown("""
 <style>
     :root {
         scroll-behavior: smooth;
+        --bg: #ffffff;
+        --text: #111827;
         --primary-color: #333333;
-        --accent-color: #666666;
+        --accent-color: #0066cc;
         --light-gray: #f5f5f5;
         --medium-gray: #999999;
         --dark-gray: #444444;
+        --card-bg: #f5f5f5;
+        --glass-bg: rgba(255,255,255,0.9);
+        --section-bg: rgba(0,0,0,0.06);
+        --section-text: #111827;
+        --skill-text: #111827;
+        --popup-bg: #ffffff;
+        --popup-text: #000000;
+        --header-text: #333333;
+        --image-filter: grayscale(100%);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg: #0b0b0d;
+            --text: #e6eef8;
+            --primary-color: #e6eef8;
+            --accent-color: #8ab4ff;
+            --card-bg: rgba(255,255,255,0.07);
+            --glass-bg: rgba(255,255,255,0.05);
+            --section-bg: rgba(51,51,51,0.7);
+            --section-text: #ffffff;
+            --skill-text: #ffffff;
+            --popup-bg: #111214;
+            --popup-text: #ffffff;
+            --header-text: #e6eef8;
+            --image-filter: grayscale(100%);
+        }
     }
 
     html, body {
         margin: 0 !important;
         padding: 0 !important;
         overflow-x: hidden;
-        background-color: white;
-        color: var(--primary-color);
+        background-color: var(--bg) !important;
+        color: var(--text) !important;
     }
 
     /* Hide Streamlit header, footer, and main menu */
@@ -32,7 +61,7 @@ st.markdown("""
     .header {
         font-size: clamp(2rem, 6vw, 3.5rem) !important;
         font-weight: bold !important;
-        color: white;
+        color: var(--header-text) !important;
         margin: 0 !important;
         padding: 0 !important;
     }
@@ -40,53 +69,53 @@ st.markdown("""
     /* Section Header */
     .section-header {
         font-size: clamp(1.5rem, 4vw, 2rem) !important;
-        color: white !important;
-        background: rgba(51, 51, 51, 0.7);
+        color: var(--section-text) !important;
+        background: var(--section-bg) !important;
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
         padding: 1rem !important;
         margin: 2rem 0 1rem !important;
         border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
     }
 
     .stApp {
         padding: 0 !important;
         margin: 0 !important;
+        background: transparent !important;
     }
-    /* Gallery grid */
+
     /* Skill box */
     .skill-box {
         padding: 1.5rem;
         border-radius: 10px;
-        background-color: var(--light-gray);
+        background-color: var(--card-bg);
         margin: 1rem 0;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border: 1px solid var(--medium-gray);
-        color: #000000;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(0,0,0,0.04);
+        color: var(--skill-text);
     }
 
     .highlight {
-        color: var(--dark-gray);
+        color: var(--text);
         font-weight: bold;
     }
 
-
     /* Streamlit image grayscale + hover effect */
     [data-testid="stImage"] img {
-        filter: grayscale(100%);
+        filter: var(--image-filter);
         transition: filter 0.3s ease;
         border-radius: 12px;
     }
 
     [data-testid="stImage"] img:hover {
-        filter: grayscale(0%);
+        filter: none;
     }
 
     /* Subheader fix */
     .stSubheader, [data-testid="stSubheader"] {
-        color: white !important;
-        background-color: var(--primary-color);
+        color: var(--text) !important;
+        background-color: var(--card-bg) !important;
         padding: 0.5rem 1rem !important;
         border-radius: 5px;
         margin-bottom: 1rem !important;
@@ -99,58 +128,54 @@ st.markdown("""
         padding: 0 !important;
     }
 
-.hero-image-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem 0;
-}
-
-.hero-image {
-    height: 320px;
-    width: auto;
-    object-fit: contain;
-    border-radius: 12px;
-    filter: grayscale(100%);
-    transition: filter 0.3s ease;
-}
-
-.hero-image:hover {
-    filter: grayscale(0%);
-}
-
-/* Responsive hero image on small screens */
-@media (max-width: 768px) {
-    .hero-image {
-        height: 220px;
+    .hero-image-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem 0;
     }
-}
 
-@media (max-width: 480px) {
     .hero-image {
-        height: 160px;
+        height: 320px;
+        width: auto;
+        object-fit: contain;
+        border-radius: 12px;
+        filter: var(--image-filter);
+        transition: filter 0.3s ease;
     }
-}
 
+    .hero-image:hover {
+        filter: none;
+    }
+
+    /* Responsive hero image on small screens */
+    @media (max-width: 768px) {
+        .hero-image {
+            height: 220px;
+        }
+    }
 
     @media (max-width: 480px) {
+        .hero-image {
+            height: 160px;
+        }
         .gallery-grid {
             grid-template-columns: 1fr;
         }
     }
+
     /* Popup for copy */
     .copy-popup {
         position: fixed;
-        top: auto;
+        top: 10px;
         left: 50%;
-        left: 20px;
-        transform: none;
-        background-color: white;
-        color: black;
+        transform: translateX(-50%);
+        background-color: var(--popup-bg);
+        color: var(--popup-text);
         padding: 10px 18px;
         border-radius: 6px;
-        box-shadow: 0 2px 10px rgba(255, 255, 255, 0.5);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
         font-size: 14px;
         font-weight: bold;
         z-index: 9999;
@@ -199,6 +224,18 @@ function copyToClipboard(text, message) {
         # Now render social icons
         components.html("""
         <style>
+        :root {
+            --social-text: #333333;
+            --social-hover: #0066cc;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --social-text: #a0a0a0;
+                --social-hover: #8ab4ff;
+            }
+        }
+
         .social-container {
             display: flex;
             gap: 26px;
@@ -213,7 +250,7 @@ function copyToClipboard(text, message) {
         }
 
         .social-link, .copy-icon {
-            color: #444;
+            color: var(--social-text);
             text-decoration: none;
             transition: color 0.3s ease;
             font-size: 24px;
@@ -221,7 +258,7 @@ function copyToClipboard(text, message) {
         }
         .social-link:hover,
         .copy-icon:hover {
-            color: white;
+            color: var(--social-hover);
         }
 
         /* Copy popup */
@@ -230,15 +267,23 @@ function copyToClipboard(text, message) {
             top: 10px;
             left: 30%;
             transform: translateX(-50%);
-            background-color: white;
-            color: black;
+            background-color: #ffffff;
+            color: #000000;
             padding: 10px 18px;
             border-radius: 6px;
-            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.5);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
             font-size: 14px;
             font-weight: bold;
             z-index: 9999;
             display: none;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .copy-popup {
+                background-color: #111214;
+                color: #ffffff;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            }
         }
         </style>
 
@@ -323,32 +368,34 @@ with tabs[1]:
       padding: 20px 0;
     }
 
+    /* Light Mode Timeline */
     .timeline-item {
       text-align: center;
-      color: #ccc;
+      color: #333333;
       transition: color 0.3s ease;
       position: relative;
     }
 
     .timeline-item:hover {
-      color: white;
+      color: var(--accent-color);
     }
 
     .timeline-item:hover .timeline-dot {
-      background-color: white;
-      border-color: white;
+      background-color: var(--accent-color);
+      border-color: var(--accent-color);
     }
 
     .timeline-icon {
       font-size: 30px;
       margin-bottom: 8px;
+      color: #333333;
     }
 
     .timeline-dot {
       width: 14px;
       height: 14px;
-      background-color: #444;
-      border: 2px solid #ccc;
+      background-color: #666666;
+      border: 2px solid #333333;
       border-radius: 50%;
       margin: 0 auto 8px auto;
       transition: background-color 0.3s ease, border-color 0.3s ease;
@@ -357,11 +404,13 @@ with tabs[1]:
     .timeline-title {
       font-weight: bold;
       font-size: 14px;
+      color: #111827;
     }
 
     .timeline-subtitle {
       font-size: 12px;
       opacity: 0.8;
+      color: #666666;
     }
 
     .timeline-line {
@@ -371,6 +420,43 @@ with tabs[1]:
       right: 0;
       height: 2px;
       background-color: #333;
+    }
+
+    /* Dark Mode Timeline */
+    @media (prefers-color-scheme: dark) {
+      .timeline-item {
+        color: #e6eef8;
+      }
+
+      .timeline-item:hover {
+        color: var(--accent-color);
+      }
+
+      .timeline-item:hover .timeline-dot {
+        background-color: var(--accent-color);
+        border-color: var(--accent-color);
+      }
+
+      .timeline-icon {
+        color: #e6eef8;
+      }
+
+      .timeline-dot {
+        background-color: #5a6d8a;
+        border: 2px solid #8ab4ff;
+      }
+
+      .timeline-title {
+        color: #e6eef8;
+      }
+
+      .timeline-subtitle {
+        color: #a8b8d4;
+      }
+
+      .timeline-line {
+        background-color: #8ab4ff;
+      }
     }
     </style>
 
@@ -410,16 +496,31 @@ st.markdown("""
             font-family: 'Poppins', sans-serif;
         }
 
+        :root {
+            --section-bg: rgba(0,0,0,0.06);
+            --section-text: #111827;
+            --card-bg: #f5f5f5;
+            --skill-text: #111827;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --section-bg: rgba(51,51,51,0.7);
+                --section-text: #ffffff;
+                --card-bg: rgba(255,255,255,0.07);
+                --skill-text: #ffffff;
+            }
+        }
+
         .section-header {
             font-size: 36px;
             font-weight: 600;
-            color: white;
+            color: var(--section-text);
             text-align: center;
-            border-bottom: 2px solid red;
+            border-bottom: 2px solid var(--section-text);
             display: inline-block;
             padding-bottom: 6px;
             margin-top: 20px;
-            /* background: rgba(51, 51, 51, 0.7); */
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border-radius: 12px;
@@ -427,19 +528,20 @@ st.markdown("""
         }
 
         .skill-box {
-            background-color: white;
-            color: black;
+            background-color: var(--card-bg);
+            color: var(--skill-text);
             border-radius: 12px;
             padding: 20px;
             margin: 10px 0;
-            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             font-size: 16px;
+            border: 1px solid rgba(0,0,0,0.04);
         }
 
         .skill-box:hover {
             transform: translateY(-4px);
-            box-shadow: 0 6px 18px rgba(255, 255, 255, 0.15);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
         }
 
         @media (max-width: 768px) {
@@ -453,15 +555,35 @@ st.markdown("""
 # --- Fancy Skills Grid CSS ---
 st.markdown("""
 <style>
+    :root {
+        --section-bg: rgba(0,0,0,0.06);
+        --section-text: #111827;
+        --card-bg: rgba(0,0,0,0.06);
+        --card-border: rgba(0,0,0,0.08);
+        --card-shadow: rgba(0,0,0,0.08);
+        --card-text: #111827;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --section-bg: rgba(51,51,51,0.7);
+            --section-text: #ffffff;
+            --card-bg: rgba(255,255,255,0.08);
+            --card-border: rgba(255,255,255,0.15);
+            --card-shadow: rgba(0,0,0,0.3);
+            --card-text: #ffffff;
+        }
+    }
+
     .section-header {
         font-size: clamp(1.5rem, 4vw, 2rem) !important;
-        color: white !important;
-        background: rgba(51, 51, 51, 0.7);
+        color: var(--section-text) !important;
+        background: var(--section-bg);
         backdrop-filter: blur(8px);
         padding: 1rem !important;
         border-radius: 12px;
         margin: 2rem 0 1rem !important;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        box-shadow: 0 2px 8px var(--card-shadow);
         text-align: center;
     }
 
@@ -473,16 +595,16 @@ st.markdown("""
     }
 
     .skill-card {
-        background: rgba(255, 255, 255, 0.07);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-radius: 16px;
         padding: 1.5rem;
-        color: #ffffff;
+        color: var(--card-text);
         font-size: 1.05rem;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 8px 24px var(--card-shadow);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
         display: flex;
         align-items: center;
         gap: 0.5rem;
@@ -490,8 +612,9 @@ st.markdown("""
 
     .skill-card:hover {
         transform: translateY(-6px);
-        box-shadow: 0 12px 32px rgba(255, 255, 255, 0.2);
-        background-color: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 12px 32px var(--card-shadow);
+        background-color: var(--card-bg);
+        opacity: 0.95;
     }
 
 </style>
@@ -517,31 +640,49 @@ with tabs[2]:
 # --- CSS for Experience Grid ---
 st.markdown("""
 <style>
-.experience-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1rem;
-}
+    :root {
+        --exp-card-bg: rgba(0,0,0,0.06);
+        --exp-card-border: rgba(0,0,0,0.08);
+        --exp-card-shadow: rgba(0,0,0,0.08);
+        --exp-card-text: #111827;
+        --exp-card-hover-bg: rgba(0,0,0,0.09);
+    }
 
-.experience-card {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-radius: 16px;
-    padding: 1.5rem;
-    color: white;
-    font-size: 1.05rem;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --exp-card-bg: rgba(255,255,255,0.08);
+            --exp-card-border: rgba(255,255,255,0.15);
+            --exp-card-shadow: rgba(0,0,0,0.3);
+            --exp-card-text: #ffffff;
+            --exp-card-hover-bg: rgba(255,255,255,0.13);
+        }
+    }
 
-.experience-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
-    background-color: rgba(255, 255, 255, 0.18);
-}
+    .experience-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    .experience-card {
+        background: var(--exp-card-bg);
+        border: 1px solid var(--exp-card-border);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-radius: 16px;
+        padding: 1.5rem;
+        color: var(--exp-card-text);
+        font-size: 1.05rem;
+        box-shadow: 0 6px 16px var(--exp-card-shadow);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    }
+
+    .experience-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 32px var(--exp-card-shadow);
+        background-color: var(--exp-card-hover-bg);
+    }
 </style>
 """, unsafe_allow_html=True)
 experiences = [
@@ -618,30 +759,49 @@ with tabs[4]:
 
 st.markdown("""
 <style>
-.skill-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 1rem;
-}
+    :root {
+        --achievement-bg: rgba(0,0,0,0.06);
+        --achievement-border: rgba(0,0,0,0.08);
+        --achievement-shadow: rgba(0,0,0,0.08);
+        --achievement-text: #111827;
+        --achievement-hover-bg: rgba(0,0,0,0.09);
+    }
 
-.skill-card {
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 14px;
-    padding: 1.25rem;
-    color: white;
-    font-weight: 500;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --achievement-bg: rgba(255,255,255,0.08);
+            --achievement-border: rgba(255,255,255,0.15);
+            --achievement-shadow: rgba(0,0,0,0.3);
+            --achievement-text: #ffffff;
+            --achievement-hover-bg: rgba(255,255,255,0.13);
+        }
+    }
 
-.skill-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.35);
-    background-color: rgba(255, 255, 255, 0.15);
-}
+    .skill-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 1rem;
+    }
+
+    .skill-card {
+        background-color: var(--achievement-bg);
+        border: 1px solid var(--achievement-border);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 14px;
+        padding: 1.25rem;
+        color: var(--achievement-text);
+        font-weight: 500;
+        box-shadow: 0 4px 12px var(--achievement-shadow);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .skill-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 24px var(--achievement-shadow);
+        background-color: var(--achievement-hover-bg);
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -700,8 +860,34 @@ with tabs[6]:
     def display_event(title, indices):
         st.markdown(
             f'''
-            <p style="font-size:20px; font-weight:600; margin-bottom:4px; color:#ebebeb;">{title}</p>
-            <hr style="margin-top:2px; margin-bottom:10px; border:1px solid #bbb;">
+            <style>
+                .event-title {{
+                    font-size: 20px;
+                    font-weight: 600;
+                    margin-bottom: 4px;
+                    color: #111827;
+                }}
+
+                @media (prefers-color-scheme: dark) {{
+                    .event-title {{
+                        color: #ebebeb;
+                    }}
+                }}
+
+                .event-divider {{
+                    margin-top: 2px;
+                    margin-bottom: 10px;
+                    border: 1px solid #d0d0d0;
+                }}
+
+                @media (prefers-color-scheme: dark) {{
+                    .event-divider {{
+                        border-color: #444;
+                    }}
+                }}
+            </style>
+            <p class="event-title">{title}</p>
+            <hr class="event-divider">
           <br>
             ''',
             unsafe_allow_html=True
