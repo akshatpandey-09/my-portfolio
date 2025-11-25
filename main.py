@@ -1080,7 +1080,7 @@ with tabs[5]:
         # Instagram embed for Diwali content
         instagram_embed = """
         <div style="display: flex; justify-content: center;">
-            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DEtXaymhuDd/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DBtE37APqdB/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
                 <!-- Rest of your Instagram embed code -->
             </blockquote>
             <script async src="//www.instagram.com/embed.js"></script>
@@ -1099,7 +1099,7 @@ with tabs[5]:
         # Instagram embed for National Youth Day content
         instagram_embed = """
         <div style="display: flex; justify-content: center; width: 100%; max-width: 540px; margin: 0 auto;">
-            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DBtE37APqdB/?utm_source=ig_embed&amp;utm_campaign=loading"
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DEtXaymhuDd/?utm_source=ig_embed&amp;utm_campaign=loading"
             data-instgrm-version="14"
             style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
             margin: 1px; width: 100%; aspect-ratio: 16/9;">
