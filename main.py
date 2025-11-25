@@ -957,8 +957,8 @@ achievements = [
     "🎙️ Featured Host on GSFCU's official YouTube Channel",
     "🏅 Awarded Best Orator, Cultural Fest 2023",
     "✍️ Recognized Writer for University Magazine",
-    "🎖️ Lead Organizer, Literary and Cultural Events"
-    "🏆 Winner, Yuva Samvad Public Speaking Competition under Viksit Bharat Abhiyaan 2025"
+    "🎖️ Lead Organizer, Literary and Cultural Events",
+    "🏆 Winner, Yuva Samvad Public Speaking Competition under Viksit Bharat Abhiyaan 2025",
     "🏅 Second Prize, Voice of Vivekanand - speech reimagination contest 2025"
 ]
 
